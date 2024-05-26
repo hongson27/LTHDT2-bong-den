@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test</title>
+<style>
+	table, th {
+    	border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+<table>
+<tr>
+	<th colspan='2'>Button</th>
+</tr>
+<tr>
+	<th><button onclick='turnOnLight();'>On</button>
+    <button onclick='turnOffLight();'>Off</button>
+    </th>
+</tr>
+</table>
+<div>
+	<img id='img' src='https://cdn.pixabay.com/photo/2019/08/29/13/28/idea-4438932_1280.png'>
+</div>
+<script>
+class Button {
+	constructor(status, lamp) {
+    this.status = status;
+    this.lamp = lamp;
+    }
+    connectToLamp(lamp) {
+    this.lamp = lamp;
+    }
+    turnOn() {
+    if (this.status === false) {
+    	this.status = true;
+        this.lamp.lightOn();
+    } else {
+    	alert('Công tắc đang bật');
+    }
+    }
+    turnOff() {
+    if (this.status === true) {
+    	this.status = false;
+        this.lamp.lightOff();
+    } else {
+    	alert('Công tắc đang tắt');
+    }
+    }
+}
+class Lamp {
+	constructor(status) {
+    	this.status = status;
+    }
+    lightOn() {
+    	this.status = true;
+        document.getElementById('img').src = 'https://media.istockphoto.com/id/1149246206/vi/vec-to/b%C3%B3ng-%C4%91%C3%A8n-c%C3%B3-tia-%C4%91%C3%A8n-%C4%91i%E1%BB%87n-chi%E1%BA%BFu-s%C3%A1ng-%C3%BD-t%C6%B0%E1%BB%9Fng-s%C3%A1ng-t%E1%BA%A1o-gi%E1%BA%A3i-ph%C3%A1p-kh%C3%A1i-ni%E1%BB%87m-t%C6%B0-duy.jpg?s=612x612&w=0&k=20&c=-_wrSVeGxQfd5UyouQMZGta-l0IOkqAdvpFGV-yosrc=';
+    }
+    lightOff() {
+    	this.status = false;
+        document.getElementById('img').src = 'https://cdn.pixabay.com/photo/2019/08/29/13/28/idea-4438932_1280.png';
+    }
+}
+
+let lamp = new Lamp(false);
+let button = new Button(false, lamp);
+
+function turnOnLight() {
+	button.turnOn();
+}
+function turnOffLight() {
+	button.turnOff();
+}
+</script>
+</body>
+</html>
